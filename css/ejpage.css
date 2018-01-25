@@ -1,0 +1,38 @@
+
+
+.page-tool{
+    position: relative;
+    bottom:2px;
+    height:  60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.ejpage > li{
+    position: relative;
+    float: left;
+    list-style: none;
+
+}
+
+.ejpage > li > a{
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid white;
+    color: white;
+    background:url("../img/b1.png");
+    background-size:100% 100%;
+
+}
+
+.ejpage>li:hover>a{
+    background:url("../img/b2.png");
+    background-size:100% 100%;
+    color: white;
+}
+
+.p-active>a{
+	background:url("../img/b2.png")!important;
+    background-size:100% 100%!important;
+    color: white;
+}

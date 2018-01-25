@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/ejpage.css" />
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="js/ejpage.js"></script>
+    <style>
+        body {
+            background-color: #74adaf;
+            color: white;
+        }
+
+        .pagination {
+            border: 1px solid white;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            color: white;
+            height: 300px;
+            width: 1200px;
+        }
+
+        #data {
+            margin: 10px;
+            margin-bottom: 70px;
+            width: 1200px;
+            word-wrap: break-word;
+        }
+
+        #info {
+            margin: 10px;
+            margin-top: 200px;
+        }
+
+        .change{
+            position: absolute;
+            top: 450px;
+            left: 100px;
+            color: white;
+        }
+        p{
+            margin-top: 20px;
+            margin-left: 100px;
+        }
+    </style>
+    <script>
+        var page;
+        $(function () {
+            var arr = [];
+            for (let i = 0; i < 2000000; i++) {
+                arr.push(i);
+            }
+
+            page = new ejpage({
+                id: "ejpage",      //ul的id
+                count: 50,         //每页条数
+                current: 1,       //当前页
+                totalCount: 205,         //数据
+                pages: 5,          //最多显示多少页
+                fun: function (data, pageParam) {
+                    var info = `当前页：${pageParam.current},每页条数:${pageParam.count},最大显示页数：${pageParam.pages},总条数：${pageParam.totalCount},总页数：${pageParam.totalPage}`;
+                    $("#info").text(info);
+                    $("#data").text(data.toString());
+                }
+            });
+            
+        });
+
+        function changePages() {
+            page.changeCount($("#sPageCount").val());
+        }
+
+        function refresh(){
+            var arr = [];
+            for (let i = 0; i < 40000; i++) {
+                arr.push("new"+i);
+            }
+            page.refresh(arr,1);
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <p>前台分页</p>
+    <div class="pagination">
+
+        <div id="data">
+
+        </div>
+        <ul class="ejpage" id="ejpage"></ul>
+
+        <div id="info">
+
+        </div>
+    </div>
+
+    <div class="change">
+        每页显示条数
+        <select id="sPageCount" onchange="changePages()">
+            <option>100</option>
+            <option selected>50</option>
+            <option>40</option>
+            <option>30</option>
+            <option>20</option>
+        </select>
+        
+        <button onclick="refresh()">刷新数据</button>
+    </div>
+
+
+</body>
+
+</html>
